@@ -1,0 +1,62 @@
+ <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>vue2</title>
+
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <div id="app">
+        <div>
+            <!-- 组件名称是驼峰的直接中间加- -->
+            <feature-component></feature-component>
+            <new-zujian></new-zujian>
+            <!-- <Feature-Component></Feature-Component> -->
+        </div>
+    </div>
+    <!-- 在外部定义template -->
+    <template id="template1">
+        <h3>{{newhello}}</h3>
+    </template>
+    <script>
+        //全局组件
+        Vue.component('FeatureComponent',{
+            name: "zujian",
+            data(){
+                return{
+                    hello:"hello world lalala"
+                }
+            },
+            template:"<h1>{{hello}}</h1>"
+        })
+
+
+
+        //局部组件
+        var partCompoment = {
+            name: "zujian",
+            data(){
+            return{
+                newhello:"hello world new"
+            }
+            },
+            template:"#template1"
+        }
+
+        var app = new Vue({
+            el: "#app",
+            data:{
+                message: "hellow",
+                check: [],
+                list: ["AA","BB","CC"],
+                num: 0
+            },
+            components:{
+                newZujian: partCompoment
+            }
+
+        })
+    </script>
+</body>
+</html>

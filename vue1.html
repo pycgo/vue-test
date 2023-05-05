@@ -1,0 +1,79 @@
+ <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Multiple file upload</title>
+    <style type="text/css">
+        .css1{
+            color:red
+        }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<div id="app">
+    <h3>1、正常拿vuedata里面的数据</h3>
+    {{message}}
+    <br>
+    <h3>2、三元表达式</h3>
+    {{message == "hello"?"yes is hello":"no not hello"}}
+    <br>
+    <h3>3、计算</h3>
+    {{1+2}}
+    <br>
+    <h3>4、字符串切割 反转 拼接</h3>
+    {{message.split('').reverse().join('')}}
+    <br>
+    <h3>5、input 文本输入框</h3>
+    <input type="text" v-model.trim="message">
+    {{check}}
+    <br>
+    <h3>6、input 多行文本输入框</h3>
+    <textarea name="textarea" id="textarea" cols="30" rows="8" v-model="message"></textarea>
+    <h3>7、checkbox</h3>
+    <input type="checkbox" value="1" id="a" v-model="check">
+    <label for="a">我是A</label>
+    <input type="checkbox" value="2" id="b" v-model="check">
+    <label for="b">我是B</label>
+    <div v-bind:class="message=='red'?'css1':''">
+        我是bind class
+    </div>
+    <h1 v-for="item,ii in list"> {{item,ii}} </h1>
+    <div :style="{color:message}">变色</div>
+    <button v-on:click="add">+</button>
+    {{num}}
+    <button v-on:click="minus">-</button>
+    <br>
+    <button @click="addlist">push</button>
+    <div v-for="item in list">{{item}}</div>
+
+
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data:{
+            message: "hellow",
+            check: [],
+            list: ["AA","BB","CC"],
+            num: 0
+        },
+        methods:{
+            add(){
+                console.log(this.num);
+                this.num++
+            },
+            minus(){
+                console.log(this.num);
+                this.num--
+            },
+            addlist(){
+                this.list.push("XY")
+            },
+
+        },
+
+    })
+</script>
+</body>
+</html>

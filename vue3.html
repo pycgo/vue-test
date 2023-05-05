@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <div id="app">
+        <father></father>
+    </div>
+    <script type="x-template" id="father">
+        <div>
+            <children></children>
+        </div>
+    </script>
+    <script type="x-template" id="children">
+        <div>
+            {{hello}}
+        </div>
+    </script>
+
+    <script>
+        // 子组件要写在父组件前面
+        var children = {
+            name: "children",
+            template:"#children",
+            data() {
+                return {
+                    hello: 'zhangxiaoxiao welcome',
+                };
+            },
+        }
+        var father = {
+            name: "father",
+            template:"#father",
+            components:{
+                children:children
+            }
+        }
+
+
+        var app = new Vue({
+            name: "app",
+            el: "#app",
+            components:{
+                father:father
+            }
+        })
+    </script>
+</body>
+</html>
